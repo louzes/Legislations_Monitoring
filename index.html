@@ -3,125 +3,241 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>УзМонитор — Мониторинг законодательства</title>
+<title>Мониторинг законодательств Узбекистана</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
+
 :root {
- --bg: #0a0c10; --surface: #10141c; --surface2: #161b26;
- --border: #1e2738; --accent: #c9a84c; --accent2: #e8c87a;
- --green: #2ecc8a; --red: #e05252; --blue: #4a90d9;
- --purple: #8b6fcb; --text: #d4dce8; --text-dim: #6b7a94; --text-bright: #f0f4fa;
+
+  --bg: #0a0c10; --surface: #10141c; --surface2: #161b26;
+
+  --border: #1e2738; --accent: #c9a84c; --accent2: #e8c87a;
+
+  --green: #2ecc8a; --red: #e05252; --blue: #4a90d9;
+
+  --purple: #8b6fcb; --text: #d4dce8; --text-dim: #6b7a94; --text-bright: #f0f4fa;
+
 }
+
 * { margin:0; padding:0; box-sizing:border-box; }
+
 body { background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace; min-height:100vh; overflow-x:hidden; }
+
 body::before {
- content:''; position:fixed; inset:0;
- background-image: linear-gradient(var(--border) 1px,transparent 1px), linear-gradient(90deg,var(--border) 1px,transparent 1px);
- background-size:40px 40px; opacity:0.2; pointer-events:none; z-index:0;
+
+  content:''; position:fixed; inset:0;
+
+  background-image: linear-gradient(var(--border) 1px,transparent 1px), linear-gradient(90deg,var(--border) 1px,transparent 1px);
+
+  background-size:40px 40px; opacity:0.2; pointer-events:none; z-index:0;
+
 }
-.wrap { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 20px; }
+
+.wrap { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 24px; }
+
 header { border-bottom:1px solid var(--border); padding:16px 0; background:rgba(10,12,16,0.97); position:sticky; top:0; z-index:100; backdrop-filter:blur(12px); }
+
 .hrow { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+
 .logo { display:flex; align-items:center; gap:12px; }
+
 .logo-icon { width:36px; height:36px; background:linear-gradient(135deg,var(--accent),#a07828); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:19px; }
+
 .logo-text { font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:var(--text-bright); }
+
 .logo-sub { font-size:9px; color:var(--text-dim); letter-spacing:2px; text-transform:uppercase; margin-top:2px; }
+
 .vbadge { display:inline-block; padding:2px 7px; background:rgba(46,204,138,0.15); border:1px solid rgba(46,204,138,0.3); border-radius:10px; font-size:9px; color:var(--green); letter-spacing:1px; margin-left:7px; }
+
 .spill { display:flex; align-items:center; gap:8px; padding:5px 13px; border:1px solid var(--border); border-radius:20px; font-size:11px; color:var(--text-dim); }
+
 .sdot { width:7px; height:7px; border-radius:50%; background:var(--text-dim); }
+
 .sdot.live { background:var(--green); animation:pulse 2s infinite; }
+
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
 main { padding:26px 0 60px; }
+
 .slabel { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:var(--text-dim); margin-bottom:11px; }
+
 .sgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:8px; margin-bottom:22px; }
+
 .scard { display:flex; align-items:center; gap:10px; padding:11px 13px; border:1px solid var(--border); border-radius:6px; background:var(--surface); cursor:pointer; transition:all 0.2s; user-select:none; }
+
 .scard:hover { border-color:rgba(201,168,76,0.4); }
+
 .scard.on { border-color:var(--accent); background:rgba(201,168,76,0.07); }
+
 .sicon { font-size:17px; flex-shrink:0; }
+
 .sinfo { flex:1; min-width:0; }
+
 .sname { font-size:12px; color:var(--text); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+
 .surl { font-size:10px; color:var(--text-dim); margin-top:2px; }
+
 .schk { width:15px; height:15px; border:1px solid var(--border); border-radius:3px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:10px; }
+
 .scard.on .schk { background:var(--accent); border-color:var(--accent); color:#000; }
+
 .trow { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:22px; }
+
 .ttag { padding:6px 12px; border:1px solid var(--border); border-radius:20px; font-size:11px; color:var(--text-dim); cursor:pointer; transition:all 0.18s; user-select:none; }
+
 .ttag:hover { border-color:var(--blue); color:var(--blue); }
+
 .ttag.on { border-color:var(--blue); background:rgba(74,144,217,0.12); color:#7bb8f0; }
+
 .crow { display:flex; align-items:center; gap:11px; margin-bottom:26px; flex-wrap:wrap; }
+
 .psel { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:10px 13px; border-radius:6px; font-family:'JetBrains Mono',monospace; font-size:12px; cursor:pointer; outline:none; }
+
 .rbtn { display:flex; align-items:center; gap:9px; padding:11px 24px; background:linear-gradient(135deg,var(--accent),#a07828); border:none; border-radius:6px; color:#000; font-family:'JetBrains Mono',monospace; font-size:13px; font-weight:600; cursor:pointer; transition:all 0.2s; }
+
 .rbtn:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(201,168,76,0.25); }
+
 .rbtn:disabled { opacity:0.5; cursor:not-allowed; transform:none; box-shadow:none; }
+
 .spin { width:13px; height:13px; border:2px solid rgba(0,0,0,0.25); border-top-color:#000; border-radius:50%; animation:spin 0.7s linear infinite; display:none; }
+
 @keyframes spin { to{transform:rotate(360deg)} }
+
 .expbtn { padding:10px 16px; border:1px solid var(--border); background:transparent; color:var(--text-dim); font-family:'JetBrains Mono',monospace; font-size:11px; border-radius:6px; cursor:pointer; transition:all 0.2s; display:none; }
+
 .expbtn:hover { border-color:var(--accent); color:var(--accent); }
+
 .progwrap { display:none; margin-bottom:22px; }
+
 .progwrap.show { display:block; }
+
 .proglog { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:13px; font-size:11px; max-height:120px; overflow-y:auto; line-height:2; }
+
 .ll { display:flex; gap:10px; }
+
 .lts { color:var(--accent); min-width:56px; flex-shrink:0; }
+
 .lm { color:var(--text); }
+
 .ll.ok .lm { color:var(--green); }
+
 .ll.warn .lm { color:#f0a040; }
+
 .ll.info .lm { color:var(--blue); }
+
 .statsrow { display:none; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:22px; }
+
 .statsrow.show { display:grid; }
+
 .sbox { background:var(--surface); border:1px solid var(--border); border-radius:6px; padding:15px; text-align:center; }
+
 .snum { font-family:'Playfair Display',serif; font-size:28px; font-weight:700; color:var(--accent2); line-height:1; margin-bottom:5px; }
+
 .slbl { font-size:9px; color:var(--text-dim); letter-spacing:1.5px; text-transform:uppercase; }
+
 .dbox { display:none; background:var(--surface2); border:1px solid rgba(201,168,76,0.2); border-radius:8px; padding:18px; margin-bottom:20px; }
+
 .dbox.show { display:block; }
+
 .dbox h3 { font-family:'Playfair Display',serif; font-size:14px; color:var(--accent2); margin-bottom:9px; }
+
 .dbox p { font-size:12px; line-height:1.85; color:var(--text); }
+
 .reswrap { display:none; }
+
 .reswrap.show { display:block; }
+
 .restop { display:flex; align-items:center; justify-content:space-between; margin-bottom:13px; flex-wrap:wrap; gap:10px; }
+
 .restitle { font-family:'Playfair Display',serif; font-size:17px; color:var(--text-bright); }
+
 .ftabs { display:flex; gap:2px; margin-bottom:16px; border-bottom:1px solid var(--border); overflow-x:auto; }
+
 .ft { padding:9px 15px; font-size:11px; color:var(--text-dim); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-1px; white-space:nowrap; transition:all 0.2s; }
+
 .ft:hover { color:var(--text); }
+
 .ft.on { color:var(--accent2); border-bottom-color:var(--accent); }
+
 .cards { display:flex; flex-direction:column; gap:10px; }
+
 .card { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:17px 17px 17px 21px; position:relative; overflow:hidden; transition:all 0.18s; animation:fup 0.35s ease both; }
+
 @keyframes fup { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+
 .card:hover { border-color:rgba(201,168,76,0.25); background:var(--surface2); }
+
 .card::before { content:''; position:absolute; left:0;top:0;bottom:0; width:3px; border-radius:3px 0 0 3px; }
+
 .card.high::before { background:var(--red); }
+
 .card.medium::before { background:var(--accent); }
+
 .card.low::before { background:var(--blue); }
+
 .chead { display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; flex-wrap:wrap; gap:8px; }
+
 .cmeta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+
 .sbdg { padding:3px 8px; border-radius:3px; font-size:9px; font-weight:700; letter-spacing:0.8px; text-transform:uppercase; }
+
 .s-lex{background:rgba(46,204,138,0.12);color:var(--green);}
+
 .s-president{background:rgba(201,168,76,0.12);color:var(--accent2);}
+
 .s-cb{background:rgba(74,144,217,0.12);color:var(--blue);}
+
 .s-senate{background:rgba(139,111,203,0.12);color:var(--purple);}
+
 .s-minfin{background:rgba(224,82,82,0.12);color:var(--red);}
+
 .s-other{background:rgba(255,255,255,0.07);color:var(--text-dim);}
+
 .cdate { font-size:10px; color:var(--text-dim); }
+
 .pbdg { font-size:9px; padding:3px 8px; border-radius:3px; font-weight:700; letter-spacing:0.5px; }
+
 .p-high{background:rgba(224,82,82,0.12);color:var(--red);}
+
 .p-medium{background:rgba(201,168,76,0.12);color:var(--accent2);}
+
 .p-low{background:rgba(74,144,217,0.1);color:var(--blue);}
+
 .ctitle { font-family:'Playfair Display',serif; font-size:15px; color:var(--text-bright); margin-bottom:7px; line-height:1.4; }
+
 .cbody { font-size:12px; color:var(--text); line-height:1.75; margin-bottom:10px; }
+
 .ctags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:10px; }
+
 .ctag { padding:3px 9px; border:1px solid var(--border); border-radius:20px; font-size:10px; color:var(--text-dim); }
+
 .cimp { font-size:11px; color:var(--text-dim); background:var(--bg); border-radius:4px; padding:9px 12px; border-left:2px solid var(--accent); line-height:1.65; }
+
 .cimp b { color:var(--accent2); font-size:9px; text-transform:uppercase; letter-spacing:1px; }
+
 .clink { display:inline-flex; align-items:center; gap:5px; margin-top:10px; font-size:10px; color:var(--blue); text-decoration:none; opacity:0.8; }
+
 .clink:hover { opacity:1; text-decoration:underline; }
+
 .empty { text-align:center; padding:50px 20px; color:var(--text-dim); }
+
 .ei { font-size:42px; margin-bottom:13px; opacity:0.4; }
+
 .et { font-family:'Playfair Display',serif; font-size:17px; color:var(--text); margin-bottom:8px; }
+
 .es { font-size:12px; line-height:1.65; max-width:360px; margin:0 auto; }
+
 .ibanner { display:flex; align-items:flex-start; gap:12px; background:rgba(74,144,217,0.07); border:1px solid rgba(74,144,217,0.2); border-radius:6px; padding:13px 15px; margin-bottom:22px; font-size:11px; line-height:1.7; }
+
 .ibanner strong { color:var(--blue); }
+
 ::-webkit-scrollbar{width:4px;height:4px}
+
 ::-webkit-scrollbar-track{background:var(--bg)}
+
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-@media(max-width:600px){.statsrow{grid-template-columns:repeat(2,1fr)}.sgrid{grid-template-columns:1fr 1fr}}
+
+@media(max-width:700px){.statsrow{grid-template-columns:repeat(2,1fr)}.sgrid{grid-template-columns:1fr 1fr}#sgrid2{grid-template-columns:1fr 1fr}.wrap{padding:0 16px}.trow{gap:6px}.ttag{padding:5px 10px;font-size:10px}.crow{gap:8px}.rbtn{padding:11px 16px;font-size:12px}.psel{padding:10px}}
 </style>
 </head>
 <body>
@@ -131,8 +247,8 @@ main { padding:26px 0 60px; }
 <div class="logo">
 <div class="logo-icon">🇺🇿</div>
 <div>
-<div class="logo-text">Мониторинг<span class="vbadge">v2 LIVE</span></div>
-<div class="logo-sub">Актуальный мониторинг законодательства</div>
+<div class="logo-text">Мониторинг <span class="vbadge">LIVE</span></div>
+<div class="logo-sub">Актуальный мониторинг законодательств</div>
 </div>
 </div>
 <div class="spill">
@@ -143,6 +259,10 @@ main { padding:26px 0 60px; }
 </div>
 </header>
 <main>
+<div class="wrap">
+<div class="ibanner">
+<span style="font-size:17px;flex-shrink:0">📡</span>
+<div><strong>Как работает:</strong> система реально сканирует публичные источники (t.me/lexuzofficial, cbu.uz, president.uz и др.) через веб-поиск Claude AI и показывает только фактически опубликованные документы.</div>
 </div>
 <div class="slabel">Источники</div>
 <div class="sgrid" id="sgrid">
@@ -169,6 +289,27 @@ main { padding:26px 0 60px; }
 </div>
 <div class="scard" data-src="antimonopoly" data-query="Антимонопольный комитет Узбекистан решение 2026">
 <div class="sicon">⚡</div><div class="sinfo"><div class="sname">Антимонопольный</div><div class="surl">antimonopoly.uz</div></div><div class="schk"></div>
+</div>
+</div>
+<div class="slabel">Новостные СМИ</div>
+<div class="sgrid" id="sgrid2">
+<div class="scard" data-src="spot" data-query="spot.uz экономика бизнес банки финансы Узбекистан">
+<div class="sicon">📰</div><div class="sinfo"><div class="sname">Spot.uz</div><div class="surl">spot.uz</div></div><div class="schk"></div>
+</div>
+<div class="scard" data-src="gazeta" data-query="gazeta.uz экономика финансы законодательство Узбекистан">
+<div class="sicon">📰</div><div class="sinfo"><div class="sname">Gazeta.uz</div><div class="surl">gazeta.uz</div></div><div class="schk"></div>
+</div>
+<div class="scard" data-src="kun" data-query="kun.uz иқтисодиёт молия қонун Узбекистан">
+<div class="sicon">📰</div><div class="sinfo"><div class="sname">Kun.uz</div><div class="surl">kun.uz</div></div><div class="schk"></div>
+</div>
+<div class="scard" data-src="norma" data-query="norma.uz бухгалтерия налоги право Узбекистан">
+<div class="sicon">📋</div><div class="sinfo"><div class="sname">Norma.uz</div><div class="surl">norma.uz</div></div><div class="schk"></div>
+</div>
+<div class="scard" data-src="review" data-query="review.uz бизнес экономика банки Узбекистан">
+<div class="sicon">📊</div><div class="sinfo"><div class="sname">Review.uz</div><div class="surl">review.uz</div></div><div class="schk"></div>
+</div>
+<div class="scard" data-src="dunyo" data-query="dunyo.uz экономика инвестиции Узбекистан">
+<div class="sicon">🌍</div><div class="sinfo"><div class="sname">Dunyo.uz</div><div class="surl">dunyo.uz</div></div><div class="schk"></div>
 </div>
 </div>
 <div class="slabel">Тематика</div>
@@ -236,42 +377,73 @@ main { padding:26px 0 60px; }
 </div>
 </main>
 <script>
+
 const WORKER = 'https://monitoring.i-mpossible1551.workers.dev/';
+
 let allItems = [], curF = 'all';
+
 document.querySelectorAll('.scard').forEach(c => {
- c.addEventListener('click', () => {
-   c.classList.toggle('on');
-   c.querySelector('.schk').textContent = c.classList.contains('on') ? '✓' : '';
- });
+
+  c.addEventListener('click', () => {
+
+    c.classList.toggle('on');
+
+    c.querySelector('.schk').textContent = c.classList.contains('on') ? '✓' : '';
+
+  });
+
 });
+
 document.querySelectorAll('.ttag').forEach(t => t.addEventListener('click', () => t.classList.toggle('on')));
+
 document.querySelectorAll('.ft').forEach(t => {
- t.addEventListener('click', () => {
-   document.querySelectorAll('.ft').forEach(x => x.classList.remove('on'));
-   t.classList.add('on'); curF = t.dataset.f; render();
- });
+
+  t.addEventListener('click', () => {
+
+    document.querySelectorAll('.ft').forEach(x => x.classList.remove('on'));
+
+    t.classList.add('on'); curF = t.dataset.f; render();
+
+  });
+
 });
+
 function lg(msg, type='') {
- const el = document.getElementById('progLog');
- const ts = new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
- const d = document.createElement('div');
- d.className = 'll ' + type;
- d.innerHTML = '<span class="lts">'+ts+'</span><span class="lm">'+msg+'</span>';
- el.appendChild(d); el.scrollTop = el.scrollHeight;
+
+  const el = document.getElementById('progLog');
+
+  const ts = new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+
+  const d = document.createElement('div');
+
+  d.className = 'll ' + type;
+
+  d.innerHTML = '<span class="lts">'+ts+'</span><span class="lm">'+msg+'</span>';
+
+  el.appendChild(d); el.scrollTop = el.scrollHeight;
+
 }
+
 function srcCls(s) { return ({lex:'s-lex',president:'s-president',cb:'s-cb',senate:'s-senate',minfin:'s-minfin'})[s]||'s-other'; }
-function srcLbl(s) { return ({lex:'Lex.uz',president:'Президент',cb:'ЦБ УЗ',senate:'Олий Мажлис',minfin:'Минфин',mineconomy:'Минэкономики',tax:'Нал. комитет',antimonopoly:'Антимонопольный'})[s]||s; }
+
+function srcLbl(s) { return ({lex:'Lex.uz',president:'Президент',cb:'ЦБ УЗ',senate:'Олий Мажлис',minfin:'Минфин',mineconomy:'Минэкономики',tax:'Нал. комитет',antimonopoly:'Антимонопольный',spot:'Spot.uz',gazeta:'Gazeta.uz',kun:'Kun.uz',norma:'Norma.uz',review:'Review.uz',dunyo:'Dunyo.uz'})[s]||s; }
+
 function render() {
- const el = document.getElementById('cards');
- const items = curF==='all' ? allItems : allItems.filter(i=>i.priority===curF);
- if (!items.length) { el.innerHTML='<div class="empty"><div class="ei">🔍</div><div class="et">Ничего не найдено</div><div class="es">Попробуй другой фильтр.</div></div>'; return; }
- el.innerHTML = items.map((it,i) => `
+
+  const el = document.getElementById('cards');
+
+  const items = curF==='all' ? allItems : allItems.filter(i=>i.priority===curF);
+
+  if (!items.length) { el.innerHTML='<div class="empty"><div class="ei">🔍</div><div class="et">Ничего не найдено</div><div class="es">Попробуй другой фильтр.</div></div>'; return; }
+
+  el.innerHTML = items.map((it,i) => `
 <div class="card ${it.priority}" style="animation-delay:${i*0.05}s">
 <div class="chead">
 <div class="cmeta">
 <span class="sbdg ${srcCls(it.source)}">${srcLbl(it.source)}</span>
 <span class="cdate">${it.date||''}</span>
-         ${it.docNumber ? '<span class="cdate">№ '+it.docNumber+'</span>' : ''}
+
+          ${it.docNumber ? '<span class="cdate">№ '+it.docNumber+'</span>' : ''}
 </div>
 <span class="pbdg p-${it.priority}">${{high:'🔴 Высокий',medium:'🟡 Средний',low:'🔵 Низкий'}[it.priority]}</span>
 </div>
@@ -279,100 +451,194 @@ function render() {
 <div class="cbody">${it.summary}</div>
 <div class="ctags">${(it.tags||[]).map(t=>'<span class="ctag">'+t+'</span>').join('')}</div>
 <div class="cimp"><b>⚡ Значимость</b><br>${it.impact}</div>
-     ${it.url && it.url!=='null' ? '<a class="clink" href="'+it.url+'" target="_blank">🔗 Открыть источник ↗</a>' : ''}
+
+      ${it.url && it.url!=='null' ? '<a class="clink" href="'+it.url+'" target="_blank">🔗 Открыть источник ↗</a>' : ''}
 </div>`).join('');
+
 }
+
 async function run() {
- const btn = document.getElementById('runBtn');
- const srcs = [...document.querySelectorAll('.scard.on')];
- const topics = [...document.querySelectorAll('.ttag.on')].map(t=>t.dataset.t);
- if (!srcs.length || !topics.length) { alert('Выбери хотя бы один источник и одну тему.'); return; }
- btn.disabled = true;
- document.getElementById('spin').style.display = 'block';
- document.getElementById('sDot').className = 'sdot live';
- document.getElementById('sText').textContent = 'Сканирование...';
- document.getElementById('progWrap').classList.add('show');
- document.getElementById('progLog').innerHTML = '';
- document.getElementById('statsRow').classList.remove('show');
- document.getElementById('dbox').classList.remove('show');
- document.getElementById('resWrap').classList.remove('show');
- const days = document.getElementById('period').value;
- const pLabel = {7:'7 дней',14:'14 дней',30:'месяц',3:'3 дня'}[days];
- const srcList = srcs.map(c => '- ' + c.querySelector('.sname').textContent + ': ' + c.dataset.query).join('\n');
- const topicList = topics.join(', ');
- lg('Запуск — период: ' + pLabel + ', источников: ' + srcs.length, 'info');
- lg('Темы: ' + topics.slice(0,4).join(', ') + (topics.length>4?'...':''), 'info');
- lg('Отправка запроса...', 'info');
- const prompt = `Ты аналитик законодательства Узбекистана. Найди РЕАЛЬНЫЕ законодательные изменения за последние ${days} дней (сейчас апрель 2026).
+
+  const btn = document.getElementById('runBtn');
+
+  const srcs = [...document.querySelectorAll('.scard.on')];
+
+  const topics = [...document.querySelectorAll('.ttag.on')].map(t=>t.dataset.t);
+
+  if (!srcs.length || !topics.length) { alert('Выбери хотя бы один источник и одну тему.'); return; }
+
+  btn.disabled = true;
+
+  document.getElementById('spin').style.display = 'block';
+
+  document.getElementById('sDot').className = 'sdot live';
+
+  document.getElementById('sText').textContent = 'Сканирование...';
+
+  document.getElementById('progWrap').classList.add('show');
+
+  document.getElementById('progLog').innerHTML = '';
+
+  document.getElementById('statsRow').classList.remove('show');
+
+  document.getElementById('dbox').classList.remove('show');
+
+  document.getElementById('resWrap').classList.remove('show');
+
+  const days = document.getElementById('period').value;
+
+  const pLabel = {7:'7 дней',14:'14 дней',30:'месяц',3:'3 дня'}[days];
+
+  const srcList = srcs.map(c => '- ' + c.querySelector('.sname').textContent + ': ' + c.dataset.query).join('\n');
+
+  const topicList = topics.join(', ');
+
+  lg('Запуск — период: ' + pLabel + ', источников: ' + srcs.length, 'info');
+
+  lg('Темы: ' + topics.slice(0,4).join(', ') + (topics.length>4?'...':''), 'info');
+
+  lg('Отправка запроса...', 'info');
+
+  const prompt = `Ты аналитик законодательства Узбекистана. Найди РЕАЛЬНЫЕ законодательные изменения за последние ${days} дней (сейчас апрель 2026).
+
 ИСПОЛЬЗУЙ веб-поиск по этим запросам:
+
 ${srcList}
+
 ТЕМАТИКА (включай только по этим темам): ${topicList}
+
 Верни ТОЛЬКО JSON (без markdown): {"summary":"1-2 предложения","items":[{"title":"название","source":"lex|president|cb|senate|minfin|mineconomy|tax|antimonopoly","date":"ДД.ММ.ГГГГ","docNumber":"номер или null","summary":"1 предложение","tags":["тег"],"priority":"high|medium|low","impact":"1 предложение","url":"ссылка или null"}]}
+
 Макс 8 документов. Только найденные. Только JSON.`;
- try {
-   const resp = await fetch(WORKER, {
-     method: 'POST',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 2000, tools: [{ type: 'web_search_20250305', name: 'web_search' }], messages: [{ role: 'user', content: prompt }] })
-   });
-   if (!resp.ok) throw new Error('HTTP ' + resp.status);
-   const data = await resp.json();
-   if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
-   const wsCount = (data.content||[]).filter(b=>b.type==='tool_use'&&b.name==='web_search').length;
-   if (wsCount) lg('Веб-поисков выполнено: ' + wsCount, 'ok');
-   const raw = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
-   lg('Обработка ответа...', 'info');
-   if (!raw.trim()) throw new Error('Пустой ответ от API');
-   const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
-   if (s === -1) throw new Error('JSON не найден. Ответ: ' + raw.slice(0,100));
-   const parsed = JSON.parse(raw.slice(s, e+1));
-   allItems = parsed.items || [];
-   const selIds = srcs.map(c=>c.dataset.src);
-   const filt = allItems.filter(i=>selIds.includes(i.source));
-   if (filt.length > 0) allItems = filt;
-   lg('Найдено материалов: ' + allItems.length, 'ok');
-   document.getElementById('stTotal').textContent = allItems.length;
-   document.getElementById('stHigh').textContent = allItems.filter(i=>i.priority==='high').length;
-   document.getElementById('stMed').textContent = allItems.filter(i=>i.priority==='medium').length;
-   document.getElementById('stSrc').textContent = new Set(allItems.map(i=>i.source)).size;
-   document.getElementById('statsRow').classList.add('show');
-   if (parsed.summary) { document.getElementById('dtxt').textContent = parsed.summary; document.getElementById('dbox').classList.add('show'); }
-   document.getElementById('resTitle').textContent = 'Дайджест за ' + pLabel + ' — ' + allItems.length + ' материалов';
-   document.getElementById('resWrap').classList.add('show');
-   document.getElementById('expBtn').style.display = 'block';
-   render();
-   document.getElementById('sText').textContent = 'Готово · ' + new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
-   document.getElementById('sDot').className = 'sdot';
-   lg('Мониторинг завершён', 'ok');
- } catch(err) {
-   lg('Ошибка: ' + err.message, 'warn');
-   document.getElementById('sDot').className = 'sdot';
-   document.getElementById('sText').textContent = 'Ошибка';
-   document.getElementById('cards').innerHTML = '<div class="empty"><div class="ei">⚠️</div><div class="et">Не удалось получить данные</div><div class="es">Ошибка: ' + err.message + '</div></div>';
-   document.getElementById('resWrap').classList.add('show');
- }
- btn.disabled = false;
- document.getElementById('spin').style.display = 'none';
+
+  try {
+
+    const resp = await fetch(WORKER, {
+
+      method: 'POST',
+
+      headers: { 'Content-Type': 'application/json' },
+
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 2000, tools: [{ type: 'web_search_20250305', name: 'web_search' }], messages: [{ role: 'user', content: prompt }] })
+
+    });
+
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+
+    const data = await resp.json();
+
+    if (data.error) throw new Error(data.error.message || JSON.stringify(data.error));
+
+    const wsCount = (data.content||[]).filter(b=>b.type==='tool_use'&&b.name==='web_search').length;
+
+    if (wsCount) lg('Веб-поисков выполнено: ' + wsCount, 'ok');
+
+    const raw = (data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('');
+
+    lg('Обработка ответа...', 'info');
+
+    if (!raw.trim()) throw new Error('Пустой ответ от API');
+
+    const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+
+    if (s === -1) throw new Error('JSON не найден. Ответ: ' + raw.slice(0,100));
+
+    const parsed = JSON.parse(raw.slice(s, e+1));
+
+    allItems = parsed.items || [];
+
+    const selIds = srcs.map(c=>c.dataset.src);
+
+    const filt = allItems.filter(i=>selIds.includes(i.source));
+
+    if (filt.length > 0) allItems = filt;
+
+    lg('Найдено материалов: ' + allItems.length, 'ok');
+
+    document.getElementById('stTotal').textContent = allItems.length;
+
+    document.getElementById('stHigh').textContent = allItems.filter(i=>i.priority==='high').length;
+
+    document.getElementById('stMed').textContent = allItems.filter(i=>i.priority==='medium').length;
+
+    document.getElementById('stSrc').textContent = new Set(allItems.map(i=>i.source)).size;
+
+    document.getElementById('statsRow').classList.add('show');
+
+    if (parsed.summary) { document.getElementById('dtxt').textContent = parsed.summary; document.getElementById('dbox').classList.add('show'); }
+
+    document.getElementById('resTitle').textContent = 'Дайджест за ' + pLabel + ' — ' + allItems.length + ' материалов';
+
+    document.getElementById('resWrap').classList.add('show');
+
+    document.getElementById('expBtn').style.display = 'block';
+
+    render();
+
+    document.getElementById('sText').textContent = 'Готово · ' + new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+
+    document.getElementById('sDot').className = 'sdot';
+
+    lg('Мониторинг завершён', 'ok');
+
+  } catch(err) {
+
+    lg('Ошибка: ' + err.message, 'warn');
+
+    document.getElementById('sDot').className = 'sdot';
+
+    document.getElementById('sText').textContent = 'Ошибка';
+
+    document.getElementById('cards').innerHTML = '<div class="empty"><div class="ei">⚠️</div><div class="et">Не удалось получить данные</div><div class="es">Ошибка: ' + err.message + '</div></div>';
+
+    document.getElementById('resWrap').classList.add('show');
+
+  }
+
+  btn.disabled = false;
+
+  document.getElementById('spin').style.display = 'none';
+
 }
+
 function doExport() {
- if (!allItems.length) return;
- const days = document.getElementById('period').value;
- let txt = 'ДАЙДЖЕСТ ЗАКОНОДАТЕЛЬНЫХ ИЗМЕНЕНИЙ УЗБЕКИСТАНА\nПериод: ' + days + ' дней | ' + new Date().toLocaleDateString('ru-RU') + '\n' + '='.repeat(60) + '\n\n';
- const sum = document.getElementById('dtxt').textContent;
- if (sum) txt += 'СВОДКА:\n' + sum + '\n\n' + '='.repeat(60) + '\n\n';
- allItems.forEach((it,i) => {
-   txt += (i+1) + '. [' + {high:'🔴 ВЫСОКИЙ',medium:'🟡 СРЕДНИЙ',low:'🔵 НИЗКИЙ'}[it.priority] + '] ' + it.title + '\n';
-   txt += '   ' + srcLbl(it.source) + (it.docNumber?' | №'+it.docNumber:'') + ' | ' + (it.date||'') + '\n';
-   txt += '   ' + it.summary + '\n';
-   txt += '   ⚡ ' + it.impact + '\n';
-   if (it.url && it.url!=='null') txt += '   🔗 ' + it.url + '\n';
-   txt += '   Теги: ' + (it.tags||[]).join(', ') + '\n\n';
- });
- const a = document.createElement('a');
- a.href = URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));
- a.download = 'uz-digest-' + new Date().toISOString().slice(0,10) + '.txt';
- a.click();
+
+  if (!allItems.length) return;
+
+  const days = document.getElementById('period').value;
+
+  let txt = 'ДАЙДЖЕСТ ЗАКОНОДАТЕЛЬНЫХ ИЗМЕНЕНИЙ УЗБЕКИСТАНА\nПериод: ' + days + ' дней | ' + new Date().toLocaleDateString('ru-RU') + '\n' + '='.repeat(60) + '\n\n';
+
+  const sum = document.getElementById('dtxt').textContent;
+
+  if (sum) txt += 'СВОДКА:\n' + sum + '\n\n' + '='.repeat(60) + '\n\n';
+
+  allItems.forEach((it,i) => {
+
+    txt += (i+1) + '. [' + {high:'🔴 ВЫСОКИЙ',medium:'🟡 СРЕДНИЙ',low:'🔵 НИЗКИЙ'}[it.priority] + '] ' + it.title + '\n';
+
+    txt += '   ' + srcLbl(it.source) + (it.docNumber?' | №'+it.docNumber:'') + ' | ' + (it.date||'') + '\n';
+
+    txt += '   ' + it.summary + '\n';
+
+    txt += '   ⚡ ' + it.impact + '\n';
+
+    if (it.url && it.url!=='null') txt += '   🔗 ' + it.url + '\n';
+
+    txt += '   Теги: ' + (it.tags||[]).join(', ') + '\n\n';
+
+  });
+
+  const a = document.createElement('a');
+
+  a.href = URL.createObjectURL(new Blob([txt],{type:'text/plain;charset=utf-8'}));
+
+  a.download = 'uz-digest-' + new Date().toISOString().slice(0,10) + '.txt';
+
+  a.click();
+
 }
 </script>
 </body>
 </html>
+ 
