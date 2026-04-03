@@ -271,8 +271,8 @@ main { padding:26px 0 60px; }
 <div class="scard on" data-src="cb" data-query="cbu.uz Центральный банк Узбекистан постановление норматив">
 <div class="sicon">🏦</div><div class="sinfo"><div class="sname">ЦБ Узбекистана</div><div class="surl">cbu.uz</div></div><div class="schk">✓</div>
 </div>
-<div class="scard on" data-src="senate" data-query="Олий Мажлис Сенат Узбекистан закон принят 2026">
-<div class="sicon">🏟️</div><div class="sinfo"><div class="sname">Олий Мажлис</div><div class="surl">t.me/senat_uz</div></div><div class="schk">✓</div>
+<div class="scard" data-src="senate" data-query="Олий Мажлис Сенат Узбекистан закон принят 2026">
+<div class="sicon">🏟️</div><div class="sinfo"><div class="sname">Олий Мажлис</div><div class="surl">t.me/senat_uz</div></div><div class="schk">
 </div>
 <div class="scard on" data-src="gov" data-query="site:gov.uz/en/imv/news Ministry of Economy Finance Uzbekistan">
 <div class="sicon">🏛️</div><div class="sinfo"><div class="sname">Gov.uz (Минэкофин)</div><div class="surl">gov.uz/en/imv/news</div></div><div class="schk">✓</div>
@@ -289,14 +289,14 @@ main { padding:26px 0 60px; }
 </div>
 <div class="slabel">Новостные СМИ</div>
 <div class="sgrid" id="sgrid2">
-<div class="scard" data-src="spot" data-query="spot.uz экономика бизнес банки финансы Узбекистан">
-<div class="sicon">📰</div><div class="sinfo"><div class="sname">Spot.uz</div><div class="surl">spot.uz</div></div><div class="schk"></div>
+<div class="scard on" data-src="spot" data-query="spot.uz экономика бизнес банки финансы Узбекистан">
+<div class="sicon">📰</div><div class="sinfo"><div class="sname">Spot.uz</div><div class="surl">spot.uz</div></div><div class="schk">✓</div>
 </div>
-<div class="scard" data-src="gazeta" data-query="gazeta.uz экономика финансы законодательство Узбекистан">
-<div class="sicon">📰</div><div class="sinfo"><div class="sname">Gazeta.uz</div><div class="surl">gazeta.uz</div></div><div class="schk"></div>
+<div class="scard on" data-src="gazeta" data-query="gazeta.uz экономика финансы законодательство Узбекистан">
+<div class="sicon">📰</div><div class="sinfo"><div class="sname">Gazeta.uz</div><div class="surl">gazeta.uz</div></div><div class="schk">✓</div>
 </div>
-<div class="scard" data-src="kun" data-query="kun.uz иқтисодиёт молия қонун Узбекистан">
-<div class="sicon">📰</div><div class="sinfo"><div class="sname">Kun.uz</div><div class="surl">kun.uz</div></div><div class="schk"></div>
+<div class="scard on" data-src="kun" data-query="kun.uz иқтисодиёт молия қонун Узбекистан">
+<div class="sicon">📰</div><div class="sinfo"><div class="sname">Kun.uz</div><div class="surl">kun.uz</div></div><div class="schk">✓</div>
 </div>
 <div class="scard" data-src="norma" data-query="norma.uz бухгалтерия налоги право Узбекистан">
 <div class="sicon">📋</div><div class="sinfo"><div class="sname">Norma.uz</div><div class="surl">norma.uz</div></div><div class="schk"></div>
@@ -312,15 +312,15 @@ main { padding:26px 0 60px; }
 <div class="trow">
 <div class="ttag on" data-t="банки кредиты">🏦 Банки</div>
 <div class="ttag on" data-t="финтех платежи цифровые финансы">💳 Финтех</div>
-<div class="ttag on" data-t="исламские финансы иджара мушарака">🕌 Исламские финансы</div>
+<div class="ttag" data-t="исламские финансы иджара мушарака">🕌 Исламские финансы</div>
 <div class="ttag on" data-t="экономика ВВП инфляция">📈 Экономика</div>
 <div class="ttag on" data-t="бизнес предпринимательство МСБ">🏢 Бизнес / МСБ</div>
 <div class="ttag on" data-t="государственные компании ГЧП приватизация">🏛️ Гос. компании</div>
 <div class="ttag on" data-t="налоги НДС таможня акциз">🧾 Налоги</div>
-<div class="ttag on" data-t="валюта курс обмен">💱 Валюта</div>
+<div class="ttag" data-t="валюта курс обмен">💱 Валюта</div>
 <div class="ttag on" data-t="инвестиции иностранные ПИИ">🌐 Инвестиции</div>
 <div class="ttag" data-t="недвижимость ипотека строительство">🏗️ Недвижимость</div>
-<div class="ttag" data-t="цифровизация IT технологии">🖥️ Цифровизация</div>
+<div class="ttag on" data-t="цифровизация IT технологии">🖥️ Цифровизация</div>
 <div class="ttag" data-t="сельское хозяйство АПК агро">🌾 АПК</div>
 <div class="ttag" data-t="трудовые отношения занятость зарплата">👷 Труд</div>
 <div class="ttag on" data-t="финансы бюджет государственный долг">💵 Финансы</div>
@@ -328,10 +328,10 @@ main { padding:26px 0 60px; }
 </div>
 <div class="crow">
 <select class="psel" id="period">
+<option value="3">За 3 дня</option>
 <option value="7">За 7 дней</option>
 <option value="14">За 14 дней</option>
 <option value="30">За месяц</option>
-<option value="3">За 3 дня</option>
 </select>
 <button class="rbtn" id="runBtn" onclick="run()">
 <div class="spin" id="spin"></div>
@@ -546,6 +546,12 @@ ${srcList}
     const parsed = JSON.parse(raw.slice(s, e+1));
 
     allItems = parsed.items || [];
+
+    // Sort by priority: high first, then medium, then low
+
+    const priOrder = {high: 0, medium: 1, low: 2};
+
+    allItems.sort((a, b) => (priOrder[a.priority] ?? 1) - (priOrder[b.priority] ?? 1));
 
     const selIds = srcs.map(c=>c.dataset.src);
 
