@@ -311,14 +311,13 @@ async function run() {
 ИСПОЛЬЗУЙ веб-поиск по этим запросам:
 ${srcList}
 ТЕМАТИКА (включай только по этим темам): ${topicList}
-Верни ТОЛЬКО JSON без markdown, без пояснений:
-{"summary":"сводка 3-4 предложения","items":[{"title":"название","source":"lex|president|cb|senate|minfin|mineconomy|tax|antimonopoly","date":"ДД.ММ.ГГГГ","docNumber":"номер или null","summary":"суть 2-3 предложения","tags":["тег"],"priority":"high|medium|low","impact":"значимость для банков/бизнеса","url":"ссылка или null"}]}
-Только реально найденные документы. Только русский язык. Только JSON.`;
+Верни ТОЛЬКО JSON (без markdown): {"summary":"1-2 предложения","items":[{"title":"название","source":"lex|president|cb|senate|minfin|mineconomy|tax|antimonopoly","date":"ДД.ММ.ГГГГ","docNumber":"номер или null","summary":"1 предложение","tags":["тег"],"priority":"high|medium|low","impact":"1 предложение","url":"ссылка или null"}]}
+Макс 8 документов. Только найденные. Только JSON.`;
  try {
    const resp = await fetch(WORKER, {
      method: 'POST',
      headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 4000, tools: [{ type: 'web_search_20250305', name: 'web_search' }], messages: [{ role: 'user', content: prompt }] })
+     body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 2000, tools: [{ type: 'web_search_20250305', name: 'web_search' }], messages: [{ role: 'user', content: prompt }] })
    });
    if (!resp.ok) throw new Error('HTTP ' + resp.status);
    const data = await resp.json();
