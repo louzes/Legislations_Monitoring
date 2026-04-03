@@ -259,7 +259,7 @@ main { padding:26px 0 60px; }
 </div>
 </header>
 <main>
-</div>
+<div class="wrap">
 <div class="slabel">Источники</div>
 <div class="sgrid" id="sgrid">
 <div class="scard on" data-src="lex" data-query="t.me/lexuzofficial закон указ постановление Узбекистан">
@@ -274,8 +274,8 @@ main { padding:26px 0 60px; }
 <div class="scard on" data-src="senate" data-query="Олий Мажлис Сенат Узбекистан закон принят 2026">
 <div class="sicon">🏟️</div><div class="sinfo"><div class="sname">Олий Мажлис</div><div class="surl">t.me/senat_uz</div></div><div class="schk">✓</div>
 </div>
-<div class="scard on" data-src="minfin" data-query="Минфин Узбекистан minfin.uz новость приказ 2026">
-<div class="sicon">💰</div><div class="sinfo"><div class="sname">Минфин</div><div class="surl">minfin.uz</div></div><div class="schk">✓</div>
+<div class="scard on" data-src="gov" data-query="site:gov.uz/en/imv/news Ministry of Economy Finance Uzbekistan">
+<div class="sicon">🏛️</div><div class="sinfo"><div class="sname">Gov.uz (Минэкофин)</div><div class="surl">gov.uz/en/imv/news</div></div><div class="schk">✓</div>
 </div>
 <div class="scard" data-src="mineconomy" data-query="Минэкономики Узбекистан постановление решение 2026">
 <div class="sicon">📊</div><div class="sinfo"><div class="sname">Минэкономики</div><div class="surl">mineconomy.uz</div></div><div class="schk"></div>
@@ -307,9 +307,6 @@ main { padding:26px 0 60px; }
 <div class="scard" data-src="dunyo" data-query="dunyo.uz экономика инвестиции Узбекистан">
 <div class="sicon">🌍</div><div class="sinfo"><div class="sname">Dunyo.uz</div><div class="surl">dunyo.uz</div></div><div class="schk"></div>
 </div>
-<div class="scard" data-src="gov" data-query="gov.uz новости экономика финансы законодательство Узбекистан">
-<div class="sicon">🏛️</div><div class="sinfo"><div class="sname">Gov.uz (Правительство)</div><div class="surl">gov.uz/ru/news</div></div><div class="schk"></div>
-</div>
 </div>
 <div class="slabel">Тематика</div>
 <div class="trow">
@@ -326,6 +323,8 @@ main { padding:26px 0 60px; }
 <div class="ttag" data-t="цифровизация IT технологии">🖥️ Цифровизация</div>
 <div class="ttag" data-t="сельское хозяйство АПК агро">🌾 АПК</div>
 <div class="ttag" data-t="трудовые отношения занятость зарплата">👷 Труд</div>
+<div class="ttag on" data-t="финансы бюджет государственный долг">💵 Финансы</div>
+<div class="ttag on" data-t="бонды облигации ценные бумаги долговой рынок">📄 Бонды / Облигации</div>
 </div>
 <div class="crow">
 <select class="psel" id="period">
@@ -425,7 +424,7 @@ function lg(msg, type='') {
 
 function srcCls(s) { return ({lex:'s-lex',president:'s-president',cb:'s-cb',senate:'s-senate',minfin:'s-minfin'})[s]||'s-other'; }
 
-function srcLbl(s) { return ({lex:'Lex.uz',president:'Президент',cb:'ЦБ УЗ',senate:'Олий Мажлис',minfin:'Минфин',mineconomy:'Минэкономики',tax:'Нал. комитет',antimonopoly:'Антимонопольный',spot:'Spot.uz',gazeta:'Gazeta.uz',kun:'Kun.uz',norma:'Norma.uz',review:'Review.uz',dunyo:'Dunyo.uz',gov:'Gov.uz'})[s]||s; }
+function srcLbl(s) { return ({lex:'Lex.uz',president:'Президент',cb:'ЦБ УЗ',senate:'Олий Мажлис',mineconomy:'Минэкономики',tax:'Нал. комитет',antimonopoly:'Антимонопольный',spot:'Spot.uz',gazeta:'Gazeta.uz',kun:'Kun.uz',norma:'Norma.uz',review:'Review.uz',dunyo:'Dunyo.uz',gov:'Gov.uz (Минэкофин)'})[s]||s; }
 
 function render() {
 
@@ -498,7 +497,9 @@ async function run() {
 
   lg('Отправка запроса...', 'info');
 
-  const prompt = `Ты аналитик законодательства Узбекистана. Найди РЕАЛЬНЫЕ законодательные изменения за последние ${days} дней (сейчас апрель 2026).
+  const today = new Date().toLocaleDateString('ru-RU');
+
+  const prompt = `Ты аналитик законодательства Узбекистана. Сегодня ${today}. Найди РЕАЛЬНЫЕ законодательные изменения и новости за последние ${days} дней — особо выдели материалы опубликованные СЕГОДНЯ (${today}).
 
 ИСПОЛЬЗУЙ веб-поиск по этим запросам:
 
