@@ -257,6 +257,9 @@ main { padding:26px 0 60px; }
 </div>
 </div>
 </div>
+</header>
+<main>
+</div>
 <div class="slabel">Источники</div>
 <div class="sgrid" id="sgrid">
 <div class="scard on" data-src="lex" data-query="t.me/lexuzofficial закон указ постановление Узбекистан">
@@ -303,6 +306,9 @@ main { padding:26px 0 60px; }
 </div>
 <div class="scard" data-src="dunyo" data-query="dunyo.uz экономика инвестиции Узбекистан">
 <div class="sicon">🌍</div><div class="sinfo"><div class="sname">Dunyo.uz</div><div class="surl">dunyo.uz</div></div><div class="schk"></div>
+</div>
+<div class="scard" data-src="gov" data-query="gov.uz новости экономика финансы законодательство Узбекистан">
+<div class="sicon">🏛️</div><div class="sinfo"><div class="sname">Gov.uz (Правительство)</div><div class="surl">gov.uz/ru/news</div></div><div class="schk"></div>
 </div>
 </div>
 <div class="slabel">Тематика</div>
@@ -419,7 +425,7 @@ function lg(msg, type='') {
 
 function srcCls(s) { return ({lex:'s-lex',president:'s-president',cb:'s-cb',senate:'s-senate',minfin:'s-minfin'})[s]||'s-other'; }
 
-function srcLbl(s) { return ({lex:'Lex.uz',president:'Президент',cb:'ЦБ УЗ',senate:'Олий Мажлис',minfin:'Минфин',mineconomy:'Минэкономики',tax:'Нал. комитет',antimonopoly:'Антимонопольный',spot:'Spot.uz',gazeta:'Gazeta.uz',kun:'Kun.uz',norma:'Norma.uz',review:'Review.uz',dunyo:'Dunyo.uz'})[s]||s; }
+function srcLbl(s) { return ({lex:'Lex.uz',president:'Президент',cb:'ЦБ УЗ',senate:'Олий Мажлис',minfin:'Минфин',mineconomy:'Минэкономики',tax:'Нал. комитет',antimonopoly:'Антимонопольный',spot:'Spot.uz',gazeta:'Gazeta.uz',kun:'Kun.uz',norma:'Norma.uz',review:'Review.uz',dunyo:'Dunyo.uz',gov:'Gov.uz'})[s]||s; }
 
 function render() {
 
