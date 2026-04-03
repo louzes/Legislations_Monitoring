@@ -46,7 +46,7 @@
 header {
 border-bottom: 1px solid var(–border);
 padding: 18px 0;
-background: rgba(10, 12, 16, 0.97);
+background: rgba(10,12,16,0.97);
 position: sticky; top: 0; z-index: 100;
 backdrop-filter: blur(12px);
 }
@@ -233,8 +233,8 @@ border-radius: 6px; padding: 14px 16px; margin-bottom: 24px; font-size: 11px; li
 <div class="logo">
 <div class="logo-icon">🇺🇿</div>
 <div>
-<div class="logo-text">Мониторинг <span class="version-badge">v2 LIVE</span></div>
-<div class="logo-sub">LIVE мониторинг законодательства</div>
+<div class="logo-text">УзМонитор <span class="version-badge">v2 LIVE</span></div>
+<div class="logo-sub">Реальный мониторинг законодательства</div>
 </div>
 </div>
 <div class="status-pill">
@@ -246,9 +246,15 @@ border-radius: 6px; padding: 14px 16px; margin-bottom: 24px; font-size: 11px; li
 </header>
 <main>
 <div class="container">
-
+<!-- Info -->
+<div class="info-banner">
+<div class="ib-icon">📡</div>
+<div>
+<strong>Как работает v2:</strong> система реально сканирует публичные Telegram-каналы источников (t.me/s/lexuzofficial, cbu.uz и др.) через веб-поиск Claude AI — и анализирует только то, что там фактически опубликовано за выбранный период. Никаких генерированных данных.
+</div>
+</div>
 <!-- Sources -->
-<div class="section-label">Источники</div>
+<div class="section-label">Источники — выбери нужные</div>
 <div class="sources-grid" id="srcGrid">
 <div class="source-card selected" data-src="lex" data-url="t.me/s/lexuzofficial" data-query="site:t.me/lexuzofficial закон">
 <div class="source-icon">⚖️</div>
@@ -316,7 +322,7 @@ border-radius: 6px; padding: 14px 16px; margin-bottom: 24px; font-size: 11px; li
 </div>
 </div>
 <!-- Topics -->
-<div class="section-label">Тематикаь</div>
+<div class="section-label">Тематика — что фильтровать</div>
 <div class="topics-row">
 <div class="topic-tag active" data-t="банки кредиты">🏦 Банки</div>
 <div class="topic-tag active" data-t="финтех платежи цифровые финансы">💳 Финтех</div>
@@ -588,7 +594,7 @@ function doExport() {
  if(!allItems.length) return;
  const days = document.getElementById('period').value;
  const d = new Date().toLocaleDateString('ru-RU');
- let txt = `АНАЛИЗ ЗАКОНОДАТЕЛЬНЫХ ИЗМЕНЕНИЙ УЗБЕКИСТАНА\nПериод: последние ${days} дней | Дата: ${d}\n${'='.repeat(60)}\n\n`;
+ let txt = `ДАЙДЖЕСТ ЗАКОНОДАТЕЛЬНЫХ ИЗМЕНЕНИЙ УЗБЕКИСТАНА\nПериод: последние ${days} дней | Дата: ${d}\n${'='.repeat(60)}\n\n`;
  const sum = document.getElementById('digestTxt').textContent;
  if(sum) txt += `АНАЛИТИЧЕСКАЯ СВОДКА:\n${sum}\n\n${'='.repeat(60)}\n\n`;
  allItems.forEach((it,i)=>{
